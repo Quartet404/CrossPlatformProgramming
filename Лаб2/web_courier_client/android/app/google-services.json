@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "278548846439",
+    "project_id": "courier-delivery-266c4",
+    "storage_bucket": "courier-delivery-266c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278548846439:android:34f0ed1021d6ec4c2801c2",
+        "android_client_info": {
+          "package_name": "com.example.web_courier_client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALDmeK12vp8R2XFso8QAZKuy4fNAi1GnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,172 @@
+#AUTH API (for client and courier)
+
+
+POST /register
+{
+    phone, role
+}
+
+Resp:
+-201, {id, token}
+-400
+-500 {error_message}
+
+
+POST /login
+{
+    phone, role
+}
+
+-200, {id, token}
+-400
+-500 {error_message}
+
+
+#Customer API
+GET /catalog
+-200 {
+    shops: [
+        {
+            id,
+            name,
+            image
+        }
+    ]
+}
+-403
+-500
+
+GET /catalog/{shop_id}
+-200 {
+    categories: [
+        {
+            id,
+            name,
+            image
+        }
+    ]
+}
+-403
+-500
+
+GET /catalog/{shop_id}/{category_id}
+-200 {
+    items: [
+        {
+            id,
+            name,
+            image,
+            price
+        }
+    ]
+}
+-403
+-500
+
+GET /catalog/{shop_id}/{category_id}/{item_id}
+-200 {
+    id,
+    name,
+    image,
+    description,
+    price
+}
+
+GET /orders
+token
+- 200
+{
+    orders: [
+        {
+            id,
+            shop: {
+                name, 
+                address
+            }
+            items: [
+                {
+                    item_name,
+                    price,
+                    quantity,
+                    description,
+                }
+            ]
+            timestamp,
+        }
+    ]
+    page_index, //Pagination
+    page_count,
+}
+-401
+-500
+
+GET /order/${order_id}
+token
+{
+    {
+        id,
+        restraunt: {
+            name, 
+            address
+        }
+        items: [
+            {
+                item_name,
+                price,
+                quantity,
+                description,
+            }
+        ]
+        timestamp,
+        courier_coordinates //frontend will generate the courier's position via gmaps
+    }
+}
+
+
+POST /order
+token
+{
+    restraunt_id
+    items: [
+        {
+            item_id,
+            quantity,
+        }
+    ]
+}
+-201 {/*payment special*/}
+-401
+-500
+
+
+#Bussines/restraunt/shop API
+GET /login
+{
+    bussines_code
+}
+
+-200 {token}
+-400
+-500
+
+GET /orders?status={active/complete/denied}
+token
+-200 {
+    items: [
+        {
+            item_id,
+            quantity,
+        }
+    ]
+}
+-401
+-500
+
+POST /order/{id}/accept
+POST /order/{id}/deny
+token
+-200
+-401
+-403
+-500
+
